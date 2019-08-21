@@ -8,4 +8,4 @@ enum Direction
   Up,
   Right,
   Down
-}j
+}
