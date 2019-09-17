@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Collidables
+  - Items
   - 
   - 
   - 
@@ -40,4 +40,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 101862187
+    locked: 0
+  - name: Collidables
+    uniqueID: 768944759
+    locked: 0
+  - name: Collectables
+    uniqueID: 1916148803
+    locked: 0
+  - name: New Layer
+    uniqueID: 248439349
     locked: 0
