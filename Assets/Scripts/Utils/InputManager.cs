@@ -8,6 +8,14 @@ public enum Direction {
     Left,
     Right,
     None,
+
+    public Vector2 getVector() {
+       switch (this)
+       {
+           Up:
+           default:
+       }
+    }
 }
 
 public class InputManager
