@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Phase {
+    UserWait,
+    UserAct,
+    EnemyAct,
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    [HideInInspector]
-    public bool playerMoving = false;
+    public Phase phase = Phase.UserWait;
 
     void Awake()
     {

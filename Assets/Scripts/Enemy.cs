@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
-    [SerializeField]
+    // Start is called before the first frame update
     private float moveTime = 0.1f;
 
     private BoxCollider2D boxCollider;
@@ -29,9 +29,9 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.phase != Phase.UserWait)
+        if(GameManager.instance.phase != Phase.EnemyAct)
             return;
-        var direction = InputManager.getDirection();
+        var direction = DirectionHelper.GetRandom();
         if(direction == Direction.None)
             return;
         Move(direction);
@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 			sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 			yield return null;
 		}
-        GameManager.instance.phase = Phase.EnemyAct;
+        GameManager.instance.phase = Phase.UserWait;
 	}
 
     private void Move(Direction direction) {
@@ -61,7 +61,6 @@ public class Player : MonoBehaviour
 			return;
         }
 
-        GameManager.instance.phase = Phase.UserAct;
         StartCoroutine (SmoothMovement(end));
     }
 }

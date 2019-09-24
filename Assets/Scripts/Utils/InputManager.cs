@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Direction {
-    Up,
+    Up = 0,
     Down,
     Left,
     Right,
     None,
 }
 
-static class DirectionMethods
+static class DirectionHelper
 {
     public static Vector3 GetVector3(this Direction direction)
     {
@@ -27,6 +27,10 @@ static class DirectionMethods
             default:
                 return new Vector3(0, 0);
         }
+    }
+
+    public static Direction GetRandom(){
+        return (Direction)Random.Range(0, 3);
     }
 }
 
