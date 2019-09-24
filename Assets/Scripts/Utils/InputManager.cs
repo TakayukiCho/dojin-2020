@@ -8,13 +8,25 @@ public enum Direction {
     Left,
     Right,
     None,
+}
 
-    public Vector2 getVector() {
-       switch (this)
-       {
-           Up:
-           default:
-       }
+static class DirectionMethods
+{
+    public static Vector3 GetVector3(this Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.Up:
+                return new Vector3(0, 1);
+            case Direction.Down:
+                return new Vector3(0, -1);
+            case Direction.Right:
+                return new Vector3(1, 0);
+            case Direction.Left:
+                return new Vector3(-1, 0);
+            default:
+                return new Vector3(0, 0);
+        }
     }
 }
 
