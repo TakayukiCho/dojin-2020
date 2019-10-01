@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ public abstract class Actable: MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D> ();
     }
 
-    protected IEnumerator SmoothMovement (Vector3 end)
+    private IEnumerator SmoothMovement (Vector3 end, Action onComplete)
 	{
 		float sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 
@@ -41,12 +42,10 @@ public abstract class Actable: MonoBehaviour
 			sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 			yield return null;
 		}
-        GameManager.instance.phase = nextPhase;
+        onComplete();
 	}
 
-    protected abstract Action Decide();
-
-    protected abstract void Act(Action action);
+    protected abstract BaseAction Decide();
 
     protected bool CanMove(Direction direction) {
         var current = transform.position;
@@ -57,15 +56,24 @@ public abstract class Actable: MonoBehaviour
         return hit.transform == null;
     }
 
-
-    protected void Move(Direction direction) {
+    protected void Move(Direction direction, Action onComplete) {
         var current = transform.position;
         Vector2 end = current + direction.GetVector3();
-        StartCoroutine (SmoothMovement(end));
+        StartCoroutine (SmoothMovement(end, onComplete));
     }
 
-
-
-
-
+    protected void Act(BaseAction action, Action onActStart ,Action onActComplete, Action onNoAction)
+    {
+        onActStart();
+        switch(action)
+        {
+            case MoveAction m:
+                Move(m.direction, onActComplete);
+                return;
+            case NoAction _:
+            default:
+                onNoAction();
+                return;
+        }
+    }
 }

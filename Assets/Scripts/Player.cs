@@ -14,13 +14,13 @@ public class Player : Actable
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.phase != waitPhase)
+        if(GameManager.instance.phase != Phase.UserWait)
             return;
         var action = Decide();
-        Act(action);
+        Act(action, OnActStart, OnActComplete, OnNoAction);
     }
 
-    protected override Action Decide(){
+    protected override BaseAction Decide(){
         var initialAction = InputManager.GetAction();
          switch(initialAction)
         {
@@ -33,18 +33,13 @@ public class Player : Actable
         }
     }
 
-    protected override void Act(Action action)
-    {
-        switch(action)
-        {
-            case MoveAction m:
-                GameManager.instance.phase = actPhase;
-                Move(m.direction);
-                return;
-            case NoAction _:
-            default:
-                GameManager.instance.phase = waitPhase;
-                return;
-        }
+    private void OnActStart(){
+        GameManager.instance.phase = Phase.UserAct;
+    }
+    private void OnActComplete(){
+        GameManager.instance.phase = Phase.EnemyWait;
+    }
+    private void OnNoAction(){
+        GameManager.instance.phase = Phase.UserWait;
     }
 }

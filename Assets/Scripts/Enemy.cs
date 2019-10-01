@@ -12,14 +12,14 @@ public class Enemy : Actable
 
     void Update()
     {
-        if(GameManager.instance.phase != waitPhase)
+        if(GameManager.instance.phase != Phase.EnemyWait)
             return;
         var action = Decide();
         GameManager.instance.phase = actPhase;
-        Act(action);
+        Act(action, OnActStart, OnActComplete, OnNoAction);
     }
 
-    protected override Action Decide(){
+    protected override BaseAction Decide(){
         var initialAction = MoveAction.GetRandom();
          switch(initialAction)
         {
@@ -32,17 +32,16 @@ public class Enemy : Actable
         }
     }
 
-    protected override void Act(Action action)
-    {
-        switch(action)
-        {
-            case MoveAction m:
-                Move(m.direction);
-                return;
-            case NoAction _:
-            default:
-                GameManager.instance.phase = nextPhase;
-                return;
-        }
+    private void OnActStart(){
+        GameManager.instance.phase = Phase.EnemyAct;
     }
+
+    private void OnActComplete(){
+        GameManager.instance.phase = Phase.UserWait;
+    }
+
+    private void OnNoAction(){
+        GameManager.instance.phase = Phase.UserWait;
+    }
+
 }

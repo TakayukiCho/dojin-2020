@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NoAction : Action
+public class NoAction : BaseAction
 {
 }

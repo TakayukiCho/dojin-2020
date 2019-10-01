@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InputManager
 {
-    public static Action GetAction(){
+    public static BaseAction GetAction(){
         var direction = getDirection();
         if(direction == Direction.None){
             return new NoAction();
