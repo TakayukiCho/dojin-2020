@@ -46,7 +46,7 @@ public class Player : MonoBehaviour
 			sqrRemainingDistance = (transform.position - end).sqrMagnitude;
 			yield return null;
 		}
-        GameManager.instance.phase = Phase.EnemyAct;
+        GameManager.instance.phase = Phase.EnemyWait;
 	}
 
     private void Move(Direction direction) {

@@ -5,6 +5,7 @@ using UnityEngine;
 public enum Phase {
     UserWait,
     UserAct,
+    EnemyWait,
     EnemyAct,
 }
 

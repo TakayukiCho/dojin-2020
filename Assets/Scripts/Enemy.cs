@@ -29,11 +29,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.phase != Phase.EnemyAct)
+        if(GameManager.instance.phase != Phase.EnemyWait)
             return;
         var direction = DirectionHelper.GetRandom();
-        if(direction == Direction.None)
-            return;
         Move(direction);
     }
     protected IEnumerator SmoothMovement (Vector3 end)
@@ -60,6 +58,8 @@ public class Enemy : MonoBehaviour
             GameManager.instance.phase = Phase.UserWait;
 			return;
         }
+
+        GameManager.instance.phase = Phase.EnemyAct;
 
         StartCoroutine (SmoothMovement(end));
     }
