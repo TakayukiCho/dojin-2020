@@ -4,23 +4,11 @@ using UnityEngine;
 
 public class Enemy : Actable
 {
-    protected override Phase waitPhase {
-        get {
-            return Phase.EnemyWait;
-        }
-    }
+    protected override Phase waitPhase { get { return Phase.EnemyWait; } }
 
-    protected override Phase actPhase {
-        get {
-            return Phase.EnemyAct;
-        }
-    }
+    protected override Phase actPhase { get { return Phase.EnemyAct; } }
 
-    protected override Phase nextPhase {
-        get {
-            return Phase.UserWait;
-        }
-    }
+    protected override Phase nextPhase { get { return Phase.UserWait; } }
 
     void Update()
     {
