@@ -14,7 +14,7 @@ public class Player : Actable
         Act(action, OnActStart, OnActComplete, OnNoAction);
     }
 
-    protected override BaseAction Decide(){
+    protected BaseAction Decide(){
         var initialAction = InputManager.GetAction();
          switch(initialAction)
         {
