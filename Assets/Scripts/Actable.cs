@@ -5,11 +5,6 @@ using UnityEngine;
 
 public abstract class Actable: MonoBehaviour
 {
-
-    protected abstract Phase waitPhase { get; }
-    protected abstract Phase actPhase { get; }
-    protected abstract Phase nextPhase { get; }
-
     // Start is called before the first frame update
     protected float moveTime = 0.1f;
 
@@ -44,8 +39,6 @@ public abstract class Actable: MonoBehaviour
 		}
         onComplete();
 	}
-
-    protected abstract BaseAction Decide();
 
     protected bool CanMove(Direction direction) {
         var current = transform.position;

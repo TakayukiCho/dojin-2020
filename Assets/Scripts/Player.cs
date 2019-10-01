@@ -5,12 +5,6 @@ using UnityEngine;
 public class Player : Actable
 {
 
-    protected override Phase waitPhase { get { return Phase.UserWait; } }
-
-    protected override Phase actPhase { get { return Phase.UserAct; } }
-
-    protected override Phase nextPhase { get { return Phase.EnemyWait; } }
-
     // Update is called once per frame
     void Update()
     {

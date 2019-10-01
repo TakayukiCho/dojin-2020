@@ -10,10 +10,7 @@ public class MoveAction : BaseAction
         this.direction = direction;
     }
 
-
     public static MoveAction GetRandom() {
         return new MoveAction(DirectionHelper.GetRandom());
     }
-
-
 }
