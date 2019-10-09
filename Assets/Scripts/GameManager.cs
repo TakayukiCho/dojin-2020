@@ -52,11 +52,7 @@ public class GameManager : MonoBehaviour, GameControllable
         impl.Cast(this);
     }
 
-    private void SetUpTable()
-    {
-        DrawCard();
-    }
-    private void DrawCard()
+    public void DrawCard()
     {
         this.handCount += 1;
         var interval = handCount * 100;
