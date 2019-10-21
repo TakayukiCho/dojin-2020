@@ -11,12 +11,12 @@ public class CastableCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     Image image;
     private Vector2 prevPos;
     private CardImpl cardImpl;
-    public GameController gameController;
+    public GameManager gameManager;
 
 
     void Start()
     {
-        this.gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        this.gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
         this.cardImpl = new LightningBolt();
         this.image = this.GetComponent<Image>();
         var sprite = Resources.Load<Sprite>(this.cardImpl.ImagePath());
@@ -41,7 +41,7 @@ public class CastableCard : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
         {
             if (hit.gameObject.CompareTag("CastArea"))
             {
-                gameController.CastCard(this.cardImpl);
+                gameManager.CastCard(this.cardImpl);
                 Destroy(this.image);
                 Destroy(this);
             }
