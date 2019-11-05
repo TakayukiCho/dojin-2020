@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using NUnit.Framework;
-using UnityEngine;
-using UnityEngine.TestTools;
+﻿using NUnit.Framework;
 using Assert = UnityEngine.Assertions.Assert;
 
 namespace Tests
@@ -23,6 +19,8 @@ namespace Tests
             Assert.AreEqual(mediator.CurrentPhase, Phase.EnemyAct);
             mediator.NextPhase();
             Assert.AreEqual(mediator.CurrentPhase, Phase.UserWait);
+            mediator.NextPhase();
+            Assert.AreEqual(mediator.CurrentPhase, Phase.UserAct);
         }
     }
 }
