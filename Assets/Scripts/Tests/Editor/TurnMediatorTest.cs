@@ -11,15 +11,15 @@ namespace Tests
         {
             var mediator = new TurnMediator();
             Assert.AreEqual(mediator.CurrentPhase, Phase.UserWait);
-            mediator.NextPhase();
+            mediator.MoveNextPhase();
             Assert.AreEqual(mediator.CurrentPhase, Phase.UserAct);
-            mediator.NextPhase();
+            mediator.MoveNextPhase();
             Assert.AreEqual(mediator.CurrentPhase, Phase.EnemyWait);
-            mediator.NextPhase();
+            mediator.MoveNextPhase();
             Assert.AreEqual(mediator.CurrentPhase, Phase.EnemyAct);
-            mediator.NextPhase();
+            mediator.MoveNextPhase();
             Assert.AreEqual(mediator.CurrentPhase, Phase.UserWait);
-            mediator.NextPhase();
+            mediator.MoveNextPhase();
             Assert.AreEqual(mediator.CurrentPhase, Phase.UserAct);
         }
     }

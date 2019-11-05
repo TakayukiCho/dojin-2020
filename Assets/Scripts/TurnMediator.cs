@@ -20,7 +20,7 @@ public class TurnMediator
     {
         currentPhaseIndex = 0;
     }
-    public void NextPhase()
+    public void MoveNextPhase()
     {
         if (currentPhaseIndex == phaseCart.Length - 1)
         {
