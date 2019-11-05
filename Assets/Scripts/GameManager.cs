@@ -2,13 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Phase
-{
-    UserWait,
-    UserAct,
-    EnemyWait,
-    EnemyAct,
-}
+
 
 public class GameManager : MonoBehaviour, GameControllable
 {

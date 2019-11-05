@@ -11,20 +11,18 @@ namespace Tests
     {
         // A Test behaves as an ordinary method
         [Test]
-        public void TurnMediator()
+        public void NextPhase()
         {
-            var med = new TurnMediator();
-            Assert.AreEqual(1, med.DrawCard());
-        }
-
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator GameControllerTestWithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            var mediator = new TurnMediator();
+            Assert.AreEqual(mediator.CurrentPhase, Phase.UserWait);
+            mediator.NextPhase();
+            Assert.AreEqual(mediator.CurrentPhase, Phase.UserAct);
+            mediator.NextPhase();
+            Assert.AreEqual(mediator.CurrentPhase, Phase.EnemyWait);
+            mediator.NextPhase();
+            Assert.AreEqual(mediator.CurrentPhase, Phase.EnemyAct);
+            mediator.NextPhase();
+            Assert.AreEqual(mediator.CurrentPhase, Phase.UserWait);
         }
     }
 }
