@@ -3,13 +3,25 @@ public class GridSystem
 {
     Coordinates[,] tiles;
     static private GridSystem gridSystem;
-    static public GridSystem Init(int column, int row)
+    private GridSystem(int columns, int rows)
+    {
+        tiles = new Coordinates[columns, rows];
+        var sequence = from x in Enumerable.Range(0, columns)
+                       from y in Enumerable.Range(0, rows)
+                       select new { x, y };
+        foreach (var index in sequence)
+        {
+            tiles[index.x, index.y] = new Coordinates(index.x, index.y);
+        }
+        gridSystem = this;
+    }
+    static public GridSystem Init(int columns, int rows)
     {
         if (gridSystem != null)
         {
             throw new System.Exception("girdsytem already defined");
         }
-        new GridSystem(column, row);
+        new GridSystem(columns, rows);
         return gridSystem;
     }
 
@@ -20,18 +32,6 @@ public class GridSystem
             throw new System.Exception("girdsytem shoudl be init");
         }
         return gridSystem;
-    }
-    private GridSystem(int column, int row)
-    {
-        tiles = new Coordinates[column, row];
-        var sequence = from x in Enumerable.Range(0, column)
-                       from y in Enumerable.Range(0, row)
-                       select new { x, y };
-        foreach (var index in sequence)
-        {
-            tiles[index.x, index.y] = new Coordinates();
-        }
-        gridSystem = this;
     }
 }
 
