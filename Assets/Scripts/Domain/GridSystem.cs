@@ -1,7 +1,11 @@
 using System.Linq;
 public class GridSystem
 {
-    Coordinates[,] tiles;
+    private singleストアに値する仕組みが何かある
+    // TODO getterだけpublicにしたい
+    public Coordinates[,] tiles; こいつらはsingle storeな物を参照し、grid-systemへのactionを発行するクラス
+    public Player player;
+    public Organoid[] organoid;
     static private GridSystem gridSystem;
     private GridSystem(int columns, int rows)
     {
